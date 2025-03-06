@@ -1,8 +1,11 @@
 import Input from "./Input";
 
+import { phoneTypeList } from "../../util/constants";
+
 export default function PhoneInput({
   enteredPhone,
   enteredPhoneType,
+  onChange,
   ...props
 }) {
   return (
@@ -14,23 +17,25 @@ export default function PhoneInput({
         Telefone
       </label>
       <select
-        {...props}
         name="enteredPhoneType"
         id="enteredPhoneType"
         value={enteredPhoneType}
         className="border-1 border-solid rounded border-stone-400"
+        onChange={onChange}
       >
-        <option value="residencial">Residencial</option>
-        <option value="celular">Celular</option>
-        <option value="outro">Outro</option>
+        {phoneTypeList.map((obj) => (
+          <option key={obj.value} value={obj.value}>
+            {obj.label}
+          </option>
+        ))}
       </select>
       <Input
         id="enteredPhone"
         name="enteredPhone"
-        required
-        {...props}
         type="tel"
         value={enteredPhone}
+        onChange={onChange}
+        {...props}
       />
     </>
   );

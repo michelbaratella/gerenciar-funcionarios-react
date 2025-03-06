@@ -1,50 +1,45 @@
 import Input from "./UI/Input";
 import Submit from "./UI/Submit";
 import PhoneInput from "./UI/PhoneInput";
-import AddPhoneIcon from "./UI/AddPhoneIcon";
-import useEmployeeForm from "../hooks/useEmployeeForm";
+import AddButtonIcon from "./UI/AddButtonIcon";
+import PhoneListOutput from "./UI/PhoneListOutput";
+
+import { useSelector, useDispatch } from "react-redux";
+import { addPhone, update } from "../slices/formSlice";
 
 export default function AddEmployeeForm() {
+  const form = useSelector((state) => state.form);
   const {
-    enteredValues: {
-      firstName,
-      lastName,
-      email,
-      document,
-      enteredPhone,
-      enteredPhoneType,
-      phoneList,
-    },
-    updateEmployeeForm,
-  } = useEmployeeForm();
+    firstName,
+    lastName,
+    email,
+    document,
+    enteredPhone,
+    enteredPhoneType,
+  } = form;
+  const dispatch = useDispatch();
 
   function handleSubmitForm(e) {
     e.preventDefault();
-    console.log(enteredValues);
-  }
-
-  function handleBlur(e) {
-    if (e.target.name === "phone") {
-      updatePhoneList(e.target.value);
-    }
+    console.log(form);
   }
 
   function handleChange(e) {
-    console.log(e.target.name);
-    console.log(e.target.value);
+    dispatch(
+      update({
+        formfield: e.target.name,
+        enteredValue: e.target.value,
+      })
+    );
+  }
 
-    updateEmployeeForm(e.target.name, e.target.value);
+  function handleBlur() {
+    // se tiver algum telefone no campo de telefone, adiciona ele na lista de telefones antes de prosseguir
+    dispatch(addPhone());
   }
 
   function handleAddPhone() {
-    if (enteredPhone.trim() !== "") {
-      updateEmployeeForm("phoneList", {
-        phone: enteredPhone,
-        type: enteredPhoneType,
-      });
-
-      updateEmployeeForm("enteredPhone", "");
-    }
+    dispatch(addPhone());
   }
 
   return (
@@ -55,7 +50,6 @@ export default function AddEmployeeForm() {
           id="firstName"
           required
           value={firstName}
-          onBlur={handleBlur}
           onChange={handleChange}
         />
         <Input
@@ -63,7 +57,6 @@ export default function AddEmployeeForm() {
           id="lastName"
           required
           value={lastName}
-          onBlur={handleBlur}
           onChange={handleChange}
         />
       </p>
@@ -75,7 +68,6 @@ export default function AddEmployeeForm() {
           type="email"
           required
           value={email}
-          onBlur={handleBlur}
           onChange={handleChange}
         />
       </p>
@@ -86,7 +78,6 @@ export default function AddEmployeeForm() {
           id="document"
           required
           value={document}
-          onBlur={handleBlur}
           onChange={handleChange}
         />
       </p>
@@ -96,20 +87,12 @@ export default function AddEmployeeForm() {
           onChange={handleChange}
           enteredPhone={enteredPhone}
           enteredPhoneType={enteredPhoneType}
+          onBlur={handleBlur}
         />
-        <AddPhoneIcon onClick={handleAddPhone} />
+        <AddButtonIcon onClick={handleAddPhone} />
       </p>
 
-      {phoneList.length > 0 &&
-        phoneList.map((obj) => (
-          <p className="p-2 flex gap-2" key={obj.phone}>
-            <Input
-              value={`${obj.type}: ${obj.phone}`}
-              readOnly
-              id={obj.phone}
-            />
-          </p>
-        ))}
+      <PhoneListOutput />
 
       <Submit />
     </form>

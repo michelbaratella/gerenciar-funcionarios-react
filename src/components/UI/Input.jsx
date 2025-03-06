@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function Input({ label, id, textarea, ...props }) {
+  const classes =
+    "border-1 border-solid rounded border-stone-400 flex-grow w-0 px-1";
   return (
     <>
       {label && (
@@ -10,7 +12,7 @@ export default function Input({ label, id, textarea, ...props }) {
       )}
       {textarea ? (
         <textarea
-          className="border-1 border-solid rounded border-stone-400 flex-grow w-0"
+          className={classes}
           id={id}
           name={id}
           autoComplete="off"
@@ -18,7 +20,7 @@ export default function Input({ label, id, textarea, ...props }) {
         ></textarea>
       ) : (
         <input
-          className="border-1 border-solid rounded border-stone-400 flex-grow w-0"
+          className={classes}
           type="text"
           id={id}
           name={id}
