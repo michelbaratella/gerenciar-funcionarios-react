@@ -2,7 +2,7 @@ import React from "react";
 import Input from "./Input";
 import RemoveButtonIcon from "./RemoveButtonIcon";
 
-import { firstLetterUpper } from "../../util/validations";
+import { firstLetterUpper, maskPhone } from "../../util/validations";
 import { useDispatch, useSelector } from "react-redux";
 import { removePhone } from "../../slices/formSlice";
 
@@ -21,7 +21,7 @@ export default function PhoneListOutput() {
       {phoneList.length > 0 &&
         phoneList.map((obj, index) => {
           const phoneType = firstLetterUpper(obj.type);
-          const output = phoneType + ": " + obj.phone;
+          const output = phoneType + ": " + maskPhone(obj.phone);
           return (
             <p className="p-2 flex gap-2" key={obj.phone}>
               <Input value={output} id={obj.phone} readOnly />

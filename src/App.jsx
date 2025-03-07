@@ -1,9 +1,10 @@
-import AddEmployeeForm from "./components/AddEmployeeForm";
+import Form from "./components/Form";
 
 export default function App() {
   return (
     <div className="w-md mx-auto">
-      <AddEmployeeForm />
+      {/* <EmployeeForm /> */}
+      <Form />
     </div>
   );
 }

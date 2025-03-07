@@ -16,3 +16,26 @@ export function firstLetterUpper(word) {
   const remainingLetters = word.slice(1);
   return firstLetter + remainingLetters;
 }
+
+export function maskCpfOrRg(document) {
+  if (document.length > 9) {
+    return document.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g, "$1.$2.$3-$4");
+  } else {
+    return document.replace(/(\d{2})(\d{3})(\d{3})(\d{1})/, "$1.$2.$3-$4");
+  }
+}
+
+export function validaEmail(email) {
+  return email;
+}
+
+export const maskPhone = (phone) => {
+  const noMask = phone.replace(/\D/g, "");
+  const { length } = noMask;
+  if (length <= 11) {
+    return noMask
+      .replace(/(\d{2})(\d)/, "($1) $2")
+      .replace(length === 11 ? /(\d{5})(\d)/ : /(\d{4})(\d)/, "$1-$2");
+  }
+  return phone;
+};

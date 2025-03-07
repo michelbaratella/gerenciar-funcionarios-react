@@ -6,8 +6,9 @@ import PhoneListOutput from "./UI/PhoneListOutput";
 
 import { useSelector, useDispatch } from "react-redux";
 import { addPhone, update } from "../slices/formSlice";
+import { maskCpfOrRg } from "../util/validations";
 
-export default function AddEmployeeForm() {
+export default function EmployeeForm() {
   const form = useSelector((state) => state.form);
   const {
     firstName,
@@ -31,11 +32,6 @@ export default function AddEmployeeForm() {
         enteredValue: e.target.value,
       })
     );
-  }
-
-  function handleBlur() {
-    // se tiver algum telefone no campo de telefone, adiciona ele na lista de telefones antes de prosseguir
-    dispatch(addPhone());
   }
 
   function handleAddPhone() {
@@ -63,13 +59,14 @@ export default function AddEmployeeForm() {
 
       <p className="p-2 flex gap-2">
         <Input
-          label="E-mail"
           id="email"
           type="email"
+          placeholder="Email"
           required
           value={email}
           onChange={handleChange}
         />
+        <Input placeholder="Confirmar email" onChange={handleChange} />
       </p>
 
       <p className="p-2 flex gap-2">
@@ -77,7 +74,7 @@ export default function AddEmployeeForm() {
           label="Documento"
           id="document"
           required
-          value={document}
+          value={maskCpfOrRg(document)}
           onChange={handleChange}
         />
       </p>
@@ -87,7 +84,7 @@ export default function AddEmployeeForm() {
           onChange={handleChange}
           enteredPhone={enteredPhone}
           enteredPhoneType={enteredPhoneType}
-          onBlur={handleBlur}
+          onBlur={handleAddPhone}
         />
         <AddButtonIcon onClick={handleAddPhone} />
       </p>

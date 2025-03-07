@@ -1,6 +1,7 @@
 import Input from "./Input";
 
 import { phoneTypeList } from "../../util/constants";
+import { maskPhone } from "../../util/validations";
 
 export default function PhoneInput({
   enteredPhone,
@@ -33,7 +34,7 @@ export default function PhoneInput({
         id="enteredPhone"
         name="enteredPhone"
         type="tel"
-        value={enteredPhone}
+        value={maskPhone(enteredPhone)}
         onChange={onChange}
         {...props}
       />
