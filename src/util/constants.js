@@ -4,66 +4,72 @@ export const phoneTypeList = [
   { value: "outro", label: "Outro" },
 ];
 
+export const permissions = [
+  { id: 0, level: 0, role: "funcionario", label: "Funcionário" },
+  { id: 1, level: 1, role: "gerente", label: "Gerente" },
+];
+
+export const initialFormSliceState = [
+  { label: "Nome", id: "firstName" },
+  { label: "Sobrenome", id: "lastName" },
+];
+
 export const employeeList = [
   {
-    id: "1",
+    id: "99999999999",
     name: "Boss Doe",
     email: "joao@doe",
     document: "99999999999",
     phoneList: [
       {
-        id: "celular199999999999",
+        id: "199999999999",
         phone: "199999999999",
-        type: "celular",
       },
     ],
     superior: "Boss da Silva",
-    permissão: "gerente",
+    permission: "gerente",
   },
   {
-    id: "2",
+    id: "12345678912",
     name: "João Doe",
     email: "joao@doe",
     document: "12345678912",
     phoneList: [
       {
-        id: "celular199999999999",
+        id: "199999999999",
         phone: "199999999999",
-        type: "celular",
       },
     ],
     superior: "Fulano da Silva",
-    permissão: "funcionario",
+    permission: "funcionario",
   },
   {
-    id: "3",
+    id: "11111111111",
     name: "Maria Doe",
     fullName: "João Doe",
     email: "joao@doe",
     document: "11111111111",
     phoneList: [
       {
-        id: "celular199999999999",
+        id: "199999999999",
         phone: "199999999999",
-        type: "celular",
       },
     ],
     superior: "Fulano da Silva",
-    permissão: "funcionario",
+    permission: "funcionario",
   },
   {
-    id: "4",
+    id: "22222222222",
     name: "James Doe",
     email: "joao@doe",
     document: "22222222222",
     phoneList: [
       {
-        id: "celular199999999999",
+        id: "199999999999",
         phone: "199999999999",
-        type: "celular",
       },
     ],
     superior: "Fulano da Silva",
-    permissão: "funcionario",
+    permission: "funcionario",
   },
 ];

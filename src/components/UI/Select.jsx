@@ -1,19 +1,13 @@
 import React from "react";
-import { classes } from "../../util/sharedStyles";
 
-export default function Select({ label, values, ...props }) {
+export default function Select({ title, options, label, ...props }) {
   return (
-    <p className="flex flex-col gap-1 my-4">
-      <label className="text-sm text-left" htmlFor={props.id}>
-        {label}
-      </label>
-      <select className={classes} name={props.name}>
-        {values &&
-          values.map((val) => (
-            <option key={val} value={val}>
-              {val}
-            </option>
-          ))}
+    <p className="border-solid m-1 rounded p-1 shadow flex justify-between">
+      <label className="text-stone-500">{title}</label>
+      <select {...props}>
+        {options.map((obj) => (
+          <option key={obj.id}>{obj[label]}</option>
+        ))}
       </select>
     </p>
   );

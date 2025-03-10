@@ -1,10 +1,11 @@
-import Form from "./components/Form";
+import Form from "./components/Form/Form";
+import ListEmployees from "./components/ListEmployees/ListEmployees";
 
 export default function App() {
   return (
-    <div className="w-md mx-auto">
-      {/* <EmployeeForm /> */}
+    <>
       <Form />
-    </div>
+      <ListEmployees />
+    </>
   );
 }

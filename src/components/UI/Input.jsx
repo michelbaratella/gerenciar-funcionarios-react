@@ -1,33 +1,22 @@
-import React from "react";
+import AddButtonIcon from "../UI/AddButtonIcon";
 
-export default function Input({ label, id, textarea, ...props }) {
-  const classes =
-    "border-1 border-solid rounded border-stone-400 flex-grow w-0 px-1";
+export default function Input({
+  label,
+  errors,
+  addBtn,
+  onClickAddPhone,
+  ...props
+}) {
+  const classes = `border-solid m-1 rounded p-1 shadow flex justify-between`;
+  const inputClass = `${!label && "w-full"}`;
   return (
     <>
-      {label && (
-        <label htmlFor={id} className="text-stone-800 flex-shrink-0">
-          {label}
-        </label>
-      )}
-      {textarea ? (
-        <textarea
-          className={classes}
-          id={id}
-          name={id}
-          autoComplete="off"
-          {...props}
-        ></textarea>
-      ) : (
-        <input
-          className={classes}
-          type="text"
-          id={id}
-          name={id}
-          autoComplete="off"
-          {...props}
-        />
-      )}
+      <p className={classes}>
+        {label && <label className=" text-stone-500">{label}</label>}
+        <input {...props} className={inputClass} />
+        {addBtn && <AddButtonIcon onClick={onClickAddPhone} />}
+      </p>
+      <p className="text-red-500 text-sm">{errors}</p>
     </>
   );
 }

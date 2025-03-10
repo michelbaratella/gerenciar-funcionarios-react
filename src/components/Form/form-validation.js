@@ -37,17 +37,29 @@ const passwordValidation = yup
 
 const confirmPasswordValidation = yup
   .string()
-  .oneOf([yup.ref("password")], "Confirmação de senha não coincide com senha digitada");
+  .oneOf(
+    [yup.ref("password")],
+    "Confirmação de senha não coincide com senha digitada"
+  );
+
+const documentValidation = (length) =>
+  yup
+    .string()
+    .min(length, `Verificar valor digitado, campo ${length} caractéres.`)
+    .when("isEmailRequired", {
+      is: true, // If state is true, validation will be triggered
+      then: yup.string().required("Documento já cadastrado"),
+    });
 
 const schema = {
   firstName: requiredString,
   lastName: requiredString,
   birthdate: dateValidation,
   email: requiredEmail,
-  document: requiredMinLengthString(9),
-  phone: requiredString,
-  //   gestor: yup.string(),
-  //   permission: yup.string(),
+  document: documentValidation(9),
+  enteredPhone: requiredMinLengthString(8),
+  superior: yup.string(),
+  permission: yup.string(),
   password: passwordValidation,
   confirmPassword: confirmPasswordValidation,
 };
