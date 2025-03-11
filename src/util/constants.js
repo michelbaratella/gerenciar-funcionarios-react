@@ -1,17 +1,6 @@
-export const phoneTypeList = [
-  { value: "residencial", label: "Residencial" },
-  { value: "celular", label: "Celular" },
-  { value: "outro", label: "Outro" },
-];
-
 export const permissions = [
   { id: 0, level: 0, role: "funcionario", label: "Funcionário" },
   { id: 1, level: 1, role: "gerente", label: "Gerente" },
-];
-
-export const initialFormSliceState = [
-  { label: "Nome", id: "firstName" },
-  { label: "Sobrenome", id: "lastName" },
 ];
 
 export const employeeList = [
