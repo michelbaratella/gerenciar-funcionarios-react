@@ -1,14 +1,9 @@
 // import dependencies
-import React from "react";
-
 // import react-testing methods
 import { render, screen } from "@testing-library/react";
 
 // import recommended method to test user interaction in browser environment (better than fireEvent)
 import userEvent from "@testing-library/user-event";
-
-// add custom jest matchers from jest-dom
-import "@testing-library/jest-dom";
 
 // importing store and provider for redux
 import { store } from "../../store/store";
