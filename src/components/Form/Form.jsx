@@ -12,7 +12,6 @@ import { addNewEmployee } from "../../slices/employeesSlice";
 
 export default function Form() {
   const dispatch = useDispatch();
-
   const {
     register,
     handleSubmit,

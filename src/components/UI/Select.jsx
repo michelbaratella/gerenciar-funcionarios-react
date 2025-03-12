@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Select({ title, options, label, ...props }) {
   return (
     <p className="border-solid m-1 rounded p-1 shadow flex justify-between">
